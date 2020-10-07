@@ -1,0 +1,72 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tuatreporttitle}
+
+\RequirePackage{zxjatype}
+\RequirePackage[ipa]{zxjafont}
+
+% \let\oldtitle\title
+% \newcommand{\title}[1]{\def\@title {#1}}
+\title{実験報告書}
+
+\newcommand{\tuatnumber}[1]{\renewcommand{\@tuatnumber}{#1}}
+\newcommand\@tuatnumber{0}
+
+\let\oldmaketitle\maketitle
+\renewcommand{\maketitle}{
+    % \meaning\author[1]{test}
+    \begin{center}
+    \large
+    \textbf
+    \@title
+    \end{center}
+    \begin{table}[ht]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|c|} 
+        \hline
+        \multicolumn{3}{|c|}{実験演習記録}     & \multicolumn{3}{c|}{判定・指示}  \\ 
+        \hline
+            & 年月日時    & 共同作業者          & \multicolumn{3}{c|}{}                      \\ 
+        \cline{1-3}
+        1   &         &                  &  \multicolumn{3}{c|}{}                       \\ 
+        \cline{1-3}
+        2   &         &                  &  \multicolumn{3}{c|}{}                         \\ 
+        \cline{1-3}
+        3   &         &                  &  \multicolumn{3}{c|}{}                         \\ 
+        \cline{1-3}
+        4   &         &                  &  \multicolumn{3}{c|}{}                          \\ 
+        \cline{1-3}
+            &         &                  &  \multicolumn{3}{c|}{}                        \\ 
+        \cline{1-3}
+        \multicolumn{3}{|c|}{レポート提出記録}   &  \multicolumn{3}{c|}{}                         \\ 
+        \cline{1-3}
+            & 提出年月日   & 期限年月日          &  \multicolumn{3}{c|}{}                         \\ 
+        \cline{1-3}
+        初   &         &                  &  \multicolumn{3}{c|}{}                         \\ 
+        \cline{1-3}
+        再   &         &                  &  \multicolumn{3}{c|}{}                         \\ 
+        \cline{1-3}
+            &         &                  &  \multicolumn{3}{c|}{}                         \\ 
+        \cline{1-3}
+            &         &                  & \multicolumn{3}{c|}{}                         \\ 
+        \cline{1-3}
+            &         &                  &  \multicolumn{3}{c|}{}                         \\ 
+        \hline
+        \multicolumn{2}{|c|}{科目名} & テーマ指導教員                   & 学年 & 学期 & 単位                      \\ 
+        \hline
+        \multicolumn{2}{|c|}{}         &                  &  &  &                       \\ 
+        \hline
+        \multicolumn{2}{|c|}{テーマ番号・テーマ名} & 学籍番号 & \multicolumn{3}{|c|}{名前}                   \\ 
+        \hline
+        \multicolumn{2}{|c|}{}         &         \@tuatnumber         &  \multicolumn{3}{c|}{}                        \\
+        \hline
+        \end{tabular}
+        \end{table}
+
+    \normalsize
+    \newpage
+
+    \meaning\@maketitle
+
+
+    \meaning\maketitle
+}
