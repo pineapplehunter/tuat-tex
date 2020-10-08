@@ -1,18 +1,19 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{tuatreporttitle}
 
+% xetexとplatexの療法で動かすため
 \RequirePackage{ifxetex}
 \ifxetex
   \RequirePackage{zxjatype}
   \RequirePackage[ipa]{zxjafont}
 \else\fi
-% \RequirePackage{adjustbox}
-\RequirePackage{graphicx}
-% \RequirePackage[margin=15mm]{geometry}
-\RequirePackage{arrayjobx}
 
+\RequirePackage{graphicx}
+
+% デフォルトのタイトル設定
 \title{実験報告書}
 
+% 変数定義をするためのマクロ
 \newcommand{\regval}[2]{
     \expandafter\newcommand\csname #1value\endcsname{#2}%
     \expandafter\newcommand\csname #1\endcsname[1]{
@@ -20,6 +21,7 @@
     }%
 }
 
+% ペアの変数を定義するマクロ
 \newcommand{\regvalpair}[3]{
     \expandafter\newcommand\csname #1valueone\endcsname{#2}%
     \expandafter\newcommand\csname #1valuetwo\endcsname{#3}%
@@ -29,30 +31,36 @@
     }%
 }
 
-\regval{tuatnumber}{0}
-\regval{tuatgakki}{前期}
-\regval{tuatgakunen}{1}
-\regval{tuattanni}{2}
-\regval{tuatkamoku}{}
-\regval{tuatteacher}{}
-\regval{tuattheme}{}
+\regval{tuatnumber}{0}   % 学籍番号
+\regval{tuatgakki}{前期} % 学期
+\regval{tuatgakunen}{1}  % 学年
+\regval{tuattani}{2}     % 単位
+\regval{tuatkamoku}{}    % 科目
+\regval{tuatteacher}{}   % 指導教員
+\regval{tuattheme}{}     % テーマ
+% 氏名 (デフォルトの\authorのエイリアス)
+\newcommand{\tuatauthor}[1]{\author{#1}}
 
+% 共同作業者の日付と名前
+% 5つ定義する方法しか思いつかなかった
 \regvalpair{tuatcollaboratorone}{}{}
 \regvalpair{tuatcollaboratortwo}{}{}
 \regvalpair{tuatcollaboratorthree}{}{}
 \regvalpair{tuatcollaboratorfour}{}{}
 \regvalpair{tuatcollaboratorfive}{}{}
 
+% レポートの日付
 \regvalpair{tuatdateone}{}{}
 \regvalpair{tuatdatetwo}{}{}
 \regvalpair{tuatdatethree}{}{}
 \regvalpair{tuatdatefour}{}{}
 \regvalpair{tuatdatefive}{}{}
 
-
+% デフォルトの\maketitleの書き換え
+% デフォルトの\maketitleは\oldmaketitleとして残してある
 \let\oldmaketitle\maketitle
 \renewcommand{\maketitle}{
-    \newgeometry{left=15mm,right=15mm, top=20mm, bottom=20mm}
+    \newgeometry{left=15mm, right=15mm, top=20mm, bottom=20mm}
     \renewcommand{\arraystretch}{1.35}
     % \meaning\author[1]{test}
     \begin{center}
@@ -96,7 +104,7 @@
         \hline
         \multicolumn{2}{|c|}{\textbf{科目名}} & \textbf{テーマ指導教員}                   & \textbf{学年} & \textbf{学期} & \textbf{単位}                      \\ 
         \hline
-        \multicolumn{2}{|c|}{\tuatkamokuvalue}         &        \tuatteachervalue          & \tuatgakunenvalue & \tuatgakkivalue & \tuattannivalue                      \\ 
+        \multicolumn{2}{|c|}{\tuatkamokuvalue}         &        \tuatteachervalue          & \tuatgakunenvalue & \tuatgakkivalue & \tuattanivalue                      \\ 
         \hline
         \multicolumn{2}{|c|}{\textbf{テーマ番号・テーマ名}} & \textbf{学籍番号} & \multicolumn{3}{|c|}{\textbf{名前}}                   \\ 
         \hline
