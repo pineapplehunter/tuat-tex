@@ -3,27 +3,42 @@
 
 \RequirePackage{zxjatype}
 \RequirePackage[ipa]{zxjafont}
+% \RequirePackage{adjustbox}
+\RequirePackage{graphicx}
+% \RequirePackage[margin=15mm]{geometry}
 
-% \let\oldtitle\title
-% \newcommand{\title}[1]{\def\@title {#1}}
 \title{実験報告書}
 
-\newcommand{\tuatnumber}[1]{\renewcommand{\@tuatnumber}{#1}}
-\newcommand\@tuatnumber{0}
+\newcommand{\regval}[2]{
+    \expandafter\newcommand\csname #1value\endcsname{#2}%
+    \expandafter\newcommand\csname #1\endcsname[1]{\expandafter\renewcommand\csname #1value\endcsname{##1}}%
+}
+
+\regval{tuatnumber}{0}
+\regval{tuatgakki}{前期}
+\regval{tuatgakunen}{1}
+\regval{tuattanni}{2}
+\regval{tuatkamoku}{}
+\regval{tuatteacher}{}
+\regval{tuattheme}{}
 
 \let\oldmaketitle\maketitle
 \renewcommand{\maketitle}{
+    \newgeometry{left=15mm,right=15mm, top=20mm, bottom=20mm}
+    \renewcommand{\arraystretch}{1.35}
     % \meaning\author[1]{test}
     \begin{center}
-    \large
+    \LARGE
     \textbf
     \@title
-    \end{center}
     \begin{table}[ht]
         \centering
+        % \begin{adjustbox}{width=\columnwidth,center}
+        \resizebox{\textwidth}{!}{
         \begin{tabular}{|c|c|c|c|c|c|} 
+        % \begin{tabular}{p{0.1\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.1\textwidth}} 
         \hline
-        \multicolumn{3}{|c|}{実験演習記録}     & \multicolumn{3}{c|}{判定・指示}  \\ 
+        \multicolumn{3}{|c|}{\textbf{実験演習記録}}     & \multicolumn{3}{c|}{\textbf{判定・指示}}  \\ 
         \hline
             & 年月日時    & 共同作業者          & \multicolumn{3}{c|}{}                      \\ 
         \cline{1-3}
@@ -53,20 +68,29 @@
         \hline
         \multicolumn{2}{|c|}{科目名} & テーマ指導教員                   & 学年 & 学期 & 単位                      \\ 
         \hline
-        \multicolumn{2}{|c|}{}         &                  &  &  &                       \\ 
+        \multicolumn{2}{|c|}{\tuatkamokuvalue}         &        \tuatteachervalue          & \tuatgakunenvalue & \tuatgakkivalue & \tuattannivalue                      \\ 
         \hline
         \multicolumn{2}{|c|}{テーマ番号・テーマ名} & 学籍番号 & \multicolumn{3}{|c|}{名前}                   \\ 
         \hline
-        \multicolumn{2}{|c|}{}         &         \@tuatnumber         &  \multicolumn{3}{c|}{}                        \\
+        \multicolumn{2}{|c|}{\tuatthemevalue}         &         \tuatnumbervalue         &  \multicolumn{3}{c|}{\@author}                        \\
         \hline
         \end{tabular}
+        }
+        % \end{adjustbox}
         \end{table}
+
+    \large
+    東京農工大学　工学部　知能情報システム工学科
+    \end{center}
+    \restoregeometry
+    
+    \renewcommand{\arraystretch}{1}
 
     \normalsize
     \newpage
 
-    \meaning\@maketitle
+    % \meaning\@maketitle
 
 
-    \meaning\maketitle
+    % \meaning\maketitle
 }
