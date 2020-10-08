@@ -62,17 +62,14 @@
 \renewcommand{\maketitle}{
 	\newgeometry{left=15mm, right=15mm, top=20mm, bottom=20mm}
 	\renewcommand{\arraystretch}{1.35}
-	% \meaning\author[1]{test}
 	\begin{center}
 		\LARGE
 		\textbf
 		\@title
 		\begin{table}[ht]
 			\centering
-			% \begin{adjustbox}{width=\columnwidth,center}
 			\resizebox{\textwidth}{!}{
 				\begin{tabular}{|c|c|c|c|c|c|}
-					% \begin{tabular}{p{0.1\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.1\textwidth}} 
 					\hline
 					\multicolumn{3}{|c|}{\textbf{実験演習記録}}         & \multicolumn{3}{c|}{\textbf{判定・指示}}                                                                                \\
 					\hline
@@ -112,7 +109,6 @@
 					\hline
 				\end{tabular}
 			}
-			% \end{adjustbox}
 		\end{table}
 
 		\large
@@ -124,9 +120,4 @@
 
 	\normalsize
 	\newpage
-
-	% \meaning\@maketitle
-
-
-	% \meaning\maketitle
 }
