@@ -6,12 +6,24 @@
 % \RequirePackage{adjustbox}
 \RequirePackage{graphicx}
 % \RequirePackage[margin=15mm]{geometry}
+\RequirePackage{arrayjobx}
 
 \title{実験報告書}
 
 \newcommand{\regval}[2]{
     \expandafter\newcommand\csname #1value\endcsname{#2}%
-    \expandafter\newcommand\csname #1\endcsname[1]{\expandafter\renewcommand\csname #1value\endcsname{##1}}%
+    \expandafter\newcommand\csname #1\endcsname[1]{
+        \expandafter\renewcommand\csname #1value\endcsname{##1}%
+    }%
+}
+
+\newcommand{\regvalpair}[3]{
+    \expandafter\newcommand\csname #1valueone\endcsname{#2}%
+    \expandafter\newcommand\csname #1valuetwo\endcsname{#3}%
+    \expandafter\newcommand\csname #1\endcsname[2]{
+        \expandafter\renewcommand\csname #1valueone\endcsname{##1}%
+        \expandafter\renewcommand\csname #1valuetwo\endcsname{##2}%
+    }%
 }
 
 \regval{tuatnumber}{0}
@@ -21,6 +33,19 @@
 \regval{tuatkamoku}{}
 \regval{tuatteacher}{}
 \regval{tuattheme}{}
+
+\regvalpair{tuatcollaboratorone}{}{}
+\regvalpair{tuatcollaboratortwo}{}{}
+\regvalpair{tuatcollaboratorthree}{}{}
+\regvalpair{tuatcollaboratorfour}{}{}
+\regvalpair{tuatcollaboratorfive}{}{}
+
+\regvalpair{tuatdateone}{}{}
+\regvalpair{tuatdatetwo}{}{}
+\regvalpair{tuatdatethree}{}{}
+\regvalpair{tuatdatefour}{}{}
+\regvalpair{tuatdatefive}{}{}
+
 
 \let\oldmaketitle\maketitle
 \renewcommand{\maketitle}{
@@ -42,35 +67,35 @@
         \hline
             & 年月日時    & 共同作業者          & \multicolumn{3}{c|}{}                      \\ 
         \cline{1-3}
-        1   &         &                  &  \multicolumn{3}{c|}{}                       \\ 
+        1   &    \tuatcollaboratoronevalueone     &      \tuatcollaboratoronevaluetwo            &  \multicolumn{3}{c|}{}                       \\ 
         \cline{1-3}
-        2   &         &                  &  \multicolumn{3}{c|}{}                         \\ 
+        2   &    \tuatcollaboratortwovalueone     &      \tuatcollaboratortwovaluetwo            &  \multicolumn{3}{c|}{}                         \\ 
         \cline{1-3}
-        3   &         &                  &  \multicolumn{3}{c|}{}                         \\ 
+        3   &    \tuatcollaboratorthreevalueone     &    \tuatcollaboratorthreevaluetwo              &  \multicolumn{3}{c|}{}                         \\ 
         \cline{1-3}
-        4   &         &                  &  \multicolumn{3}{c|}{}                          \\ 
+        4   &    \tuatcollaboratorfourvalueone     &     \tuatcollaboratorfourvaluetwo             &  \multicolumn{3}{c|}{}                          \\ 
         \cline{1-3}
-            &         &                  &  \multicolumn{3}{c|}{}                        \\ 
+            &    \tuatcollaboratorfivevalueone     &     \tuatcollaboratorfivevaluetwo             &  \multicolumn{3}{c|}{}                        \\ 
         \cline{1-3}
-        \multicolumn{3}{|c|}{レポート提出記録}   &  \multicolumn{3}{c|}{}                         \\ 
+        \multicolumn{3}{|c|}{\textbf{レポート提出記録}}   &  \multicolumn{3}{c|}{}                         \\ 
         \cline{1-3}
             & 提出年月日   & 期限年月日          &  \multicolumn{3}{c|}{}                         \\ 
         \cline{1-3}
-        初   &         &                  &  \multicolumn{3}{c|}{}                         \\ 
+        初   &   \tuatdateonevalueone      &     \tuatdateonevaluetwo             &  \multicolumn{3}{c|}{}                         \\ 
         \cline{1-3}
-        再   &         &                  &  \multicolumn{3}{c|}{}                         \\ 
+        再   &   \tuatdatetwovalueone      &     \tuatdatetwovaluetwo             &  \multicolumn{3}{c|}{}                         \\ 
         \cline{1-3}
-            &         &                  &  \multicolumn{3}{c|}{}                         \\ 
+            &    \tuatdatethreevalueone     &    \tuatdatethreevaluetwo              &  \multicolumn{3}{c|}{}                         \\ 
         \cline{1-3}
-            &         &                  & \multicolumn{3}{c|}{}                         \\ 
+            &    \tuatdatefourvalueone     &     \tuatdatefourvaluetwo             & \multicolumn{3}{c|}{}                         \\ 
         \cline{1-3}
-            &         &                  &  \multicolumn{3}{c|}{}                         \\ 
+            &    \tuatdatefivevalueone     &     \tuatdatefivevaluetwo             &  \multicolumn{3}{c|}{}                         \\ 
         \hline
-        \multicolumn{2}{|c|}{科目名} & テーマ指導教員                   & 学年 & 学期 & 単位                      \\ 
+        \multicolumn{2}{|c|}{\textbf{科目名}} & \textbf{テーマ指導教員}                   & \textbf{学年} & \textbf{学期} & \textbf{単位}                      \\ 
         \hline
         \multicolumn{2}{|c|}{\tuatkamokuvalue}         &        \tuatteachervalue          & \tuatgakunenvalue & \tuatgakkivalue & \tuattannivalue                      \\ 
         \hline
-        \multicolumn{2}{|c|}{テーマ番号・テーマ名} & 学籍番号 & \multicolumn{3}{|c|}{名前}                   \\ 
+        \multicolumn{2}{|c|}{\textbf{テーマ番号・テーマ名}} & \textbf{学籍番号} & \multicolumn{3}{|c|}{\textbf{名前}}                   \\ 
         \hline
         \multicolumn{2}{|c|}{\tuatthemevalue}         &         \tuatnumbervalue         &  \multicolumn{3}{c|}{\@author}                        \\
         \hline
