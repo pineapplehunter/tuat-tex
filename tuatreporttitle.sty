@@ -1,8 +1,11 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{tuatreporttitle}
 
-\RequirePackage{zxjatype}
-\RequirePackage[ipa]{zxjafont}
+\RequirePackage{ifxetex}
+\ifxetex
+  \RequirePackage{zxjatype}
+  \RequirePackage[ipa]{zxjafont}
+\else\fi
 % \RequirePackage{adjustbox}
 \RequirePackage{graphicx}
 % \RequirePackage[margin=15mm]{geometry}
