@@ -22,28 +22,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: install ipa mincho
-        run: |
-          sudo apt-get install -y fonts-ipafont
-          fc-cache -fv
-          fc-list | grep ipa
-
-      - name: Cache tectonic
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.cache/Tectonic
-          key: ${{ runner.os }}
-
-      # - name: Compile LaTeX
-      #   image: dxjoke/tectonic-docker
-      #   script:
-      #     - apt install fonts-ipafont
-      #     - tectonic main.tex
-      #   artifacts:
-      #     paths:
-      #       - main.pdf
-
       - name: Compile LateX
         # You may pin to the exact commit or the version.
         # uses: vinay0410/tectonic-action@b3138021657a3cdb3823f3980be054ca89e86d81
