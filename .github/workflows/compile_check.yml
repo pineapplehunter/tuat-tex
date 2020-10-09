@@ -7,8 +7,14 @@ name: Compile Check
 on:
   push:
     branches: [main]
+    paths:
+      - '**.tex'
+      - '**.sty'
   pull_request:
     branches: [main]
+    paths:
+      - '**.tex'
+      - '**.sty'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
