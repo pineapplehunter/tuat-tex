@@ -64,6 +64,7 @@
 % デフォルトの\maketitleは\oldmaketitleとして残してある
 \let\oldmaketitle\maketitle
 \renewcommand{\maketitle}{
+	\pagenumbering{gobble}
 	\newgeometry{left=15mm, right=15mm, top=20mm, bottom=10mm}
 	\renewcommand{\arraystretch}{1.4}
 	\begin{center}
@@ -124,4 +125,5 @@
 
 	\normalsize
 	\newpage
+	\pagenumbering{arabic}
 }
