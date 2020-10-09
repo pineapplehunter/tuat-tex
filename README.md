@@ -1,5 +1,7 @@
 # 知能情報システム工学実験表紙(LaTeX 版)
+
 [![Compile Check](https://github.com/pineapplehunter/tuat-tex/workflows/Compile%20Check/badge.svg)](https://github.com/pineapplehunter/tuat-tex/actions)
+
 ## 使い方
 
 `tuatreporttitle.sty`を自分の作業ディレクトリに移動して
