@@ -47,8 +47,10 @@
 
 | 名称   | 設定            |
 | ------ | --------------- |
-| LaTeX  | Tectonic(XeTeX) |
+| LaTeX  | [Tectonic][](XeTeX) |
 | サイズ | A4              |
+
+[Tectonic]:https://tectonic-typesetting.github.io/en-US/
 
 その他での動作は保証しませんがある程度どんな環境でも動くと思います。動かない環境があれば連絡して貰えれば対応を考えてみます。
 
