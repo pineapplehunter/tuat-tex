@@ -33,7 +33,7 @@ jobs:
       - name: Compile LateX
         # You may pin to the exact commit or the version.
         # uses: vinay0410/tectonic-action@b3138021657a3cdb3823f3980be054ca89e86d81
-        uses: pineapplehunter/tectonic-action@master
+        uses: vinay0410/tectonic-action@master
         with:
           # Path of Tex File
           tex_path: sample.tex
