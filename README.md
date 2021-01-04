@@ -67,4 +67,4 @@
 
 なにか質問や要望があればこのレポジトリに issue,PullRequiest を送るか、次のメールアドレスに連絡をお願いします。
 
-s1966056@st.go.tuat.ac.jp
+s196643z@st.go.tuat.ac.jp
