@@ -2,6 +2,8 @@
 
 [![Compile Check](https://github.com/pineapplehunter/tuat-tex/workflows/Compile%20Check/badge.svg)](https://github.com/pineapplehunter/tuat-tex/actions)
 
+![スクリーンショット](Screenshot.png)
+
 ## サンプル
 ### platex
 `sample-platex.tex`を参考にしてみてください。
