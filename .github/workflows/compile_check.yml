@@ -32,6 +32,6 @@ jobs:
         uses: vinay0410/tectonic-action@master
         with:
           # Path of Tex File
-          tex_path: sample.tex
+          tex_path: sample-xelatex.tex
           # String stating whether to push output PDF, PDF will only be pushed in case of "yes"
           push: no
