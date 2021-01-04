@@ -2,6 +2,12 @@
 
 [![Compile Check](https://github.com/pineapplehunter/tuat-tex/workflows/Compile%20Check/badge.svg)](https://github.com/pineapplehunter/tuat-tex/actions)
 
+## サンプル
+### platex
+`sample-platex.tex`を参考にしてみてください。
+### xelatex(Tectonic等)
+`sample-xelatex.tex`を参考にしてください。
+
 ## 使い方
 
 `tuatreporttitle.sty`を自分の作業ディレクトリに移動して
