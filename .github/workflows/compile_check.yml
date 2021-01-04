@@ -7,15 +7,7 @@ name: Compile Check
 # * every month
 on:
   push:
-    branches: [main]
-    paths:
-      - '**.tex'
-      - '**.sty'
   pull_request:
-    branches: [main]
-    paths:
-      - '**.tex'
-      - '**.sty'
   schedule:
     - cron: "0 0 1 * *"
 
