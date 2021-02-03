@@ -1,10 +1,6 @@
 # this workflow checks if the style file compiles using tectonic
 name: Compile Check
 
-# this action runs when...
-# * a new commit changes the style file or the sample file
-# * a new PR changes the style file or the sample file
-# * every month
 on:
   push:
   pull_request:
@@ -12,18 +8,23 @@ on:
     - cron: "0 0 1 * *"
 
 jobs:
-  # compiles the sample file that uses the style file
-  compile:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-20.04
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      - name: Compile LateX
-        uses: vinay0410/tectonic-action@master
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        name: Tectonic Cache
         with:
-          # Path of Tex File
-          tex_path: sample-xelatex.tex
-          # String stating whether to push output PDF, PDF will only be pushed in case of "yes"
-          push: no
+          path: ~/.cache/Tectonic
+          key: ${{ runner.os }}-tectonic-${{ hashFiles('**/*.tex') }}
+          restore-keys: |
+            ${{ runner.os }}-tectonic-
+
+      - uses: wtfjoke/setup-tectonic@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Tectonic
+        run: tectonic main.tex
