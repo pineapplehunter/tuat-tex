@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+        # caching files
       - uses: actions/cache@v2
         name: Tectonic Cache
         with:
@@ -22,9 +24,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-tectonic-
 
+        # this downloades tectonic
       - uses: wtfjoke/setup-tectonic@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+        # checks if it compiles
       - name: Run Tectonic
         run: tectonic sample-xelatex.tex
