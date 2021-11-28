@@ -3,6 +3,7 @@
 
 \RequirePackage{graphicx}
 \RequirePackage{arydshln}
+\RequirePackage{etoolbox}
 
 % デフォルトのタイトル設定
 \title{実験報告書}
@@ -15,16 +16,6 @@
 	}%
 }
 
-% ペアの変数を定義するマクロ
-\newcommand{\regvalpair}[3]{
-	\expandafter\newcommand\csname #1valueone\endcsname{#2}%
-	\expandafter\newcommand\csname #1valuetwo\endcsname{#3}%
-	\expandafter\newcommand\csname #1\endcsname[2]{
-		\expandafter\renewcommand\csname #1valueone\endcsname{##1}%
-		\expandafter\renewcommand\csname #1valuetwo\endcsname{##2}%
-	}%
-}
-
 \regval{tuatnumber}{0}   % 学籍番号
 \regval{tuatgakki}{前期} % 学期
 \regval{tuatgakunen}{1}  % 学年
@@ -32,23 +23,73 @@
 \regval{tuatkamoku}{}    % 科目
 \regval{tuatteacher}{}   % 指導教員
 \regval{tuattheme}{}     % テーマ
+
 % 氏名 (デフォルトの\authorのエイリアス)
 \newcommand{\tuatauthor}[1]{\author{#1}}
 
-% 共同作業者の日付と名前
-% 5つ定義する方法しか思いつかなかった
-\regvalpair{tuatcollaboratorone}{}{}
-\regvalpair{tuatcollaboratortwo}{}{}
-\regvalpair{tuatcollaboratorthree}{}{}
-\regvalpair{tuatcollaboratorfour}{}{}
-\regvalpair{tuatcollaboratorfive}{}{}
+\newcommand{\resetcollaborator}[1]{
+	\expandafter\newcommand\csname collaborator#1 \endcsname{}
+}
+\newcommand\getcollaborator[1]{
+	\csname collaborator#1 \endcsname
+}
+\newcommand{\collaborator}[2]{
+	\expandafter\renewcommand\csname collaborator#1 \endcsname{#2}
+}
 
-% レポートの日付
-\regvalpair{tuatdateone}{}{}
-\regvalpair{tuatdatetwo}{}{}
-\regvalpair{tuatdatethree}{}{}
-\regvalpair{tuatdatefour}{}{}
-\regvalpair{tuatdatefive}{}{}
+\resetcollaborator1
+\resetcollaborator2
+\resetcollaborator3
+\resetcollaborator4
+\resetcollaborator5
+
+\newcommand{\resetdate}[1]{
+	\expandafter\newcommand\csname date#1 \endcsname{}
+}
+\newcommand\getdate[1]{
+	\csname date#1 \endcsname
+}
+\renewcommand{\date}[2]{
+	\expandafter\renewcommand\csname date#1 \endcsname{#2}
+}
+
+\resetdate1
+\resetdate2
+\resetdate3
+\resetdate4
+\resetdate5
+
+\newcommand{\resetduedate}[1]{
+	\expandafter\newcommand\csname duedate#1 \endcsname{}
+}
+\newcommand\getduedate[1]{
+	\csname duedate#1 \endcsname
+}
+\newcommand{\duedate}[2]{
+	\expandafter\renewcommand\csname duedate#1 \endcsname{#2}
+}
+
+\resetduedate1
+\resetduedate2
+\resetduedate3
+\resetduedate4
+\resetduedate5
+
+\newcommand{\resetsubmitdate}[1]{
+	\expandafter\newcommand\csname submitdate#1 \endcsname{}
+}
+\newcommand\getsubmitdate[1]{
+	\csname submitdate#1 \endcsname
+}
+\newcommand{\submitdate}[2]{
+	\expandafter\renewcommand\csname submitdate#1 \endcsname{#2}
+}
+
+\resetsubmitdate1
+\resetsubmitdate2
+\resetsubmitdate3
+\resetsubmitdate4
+\resetsubmitdate5
 
 \setlength{\dashlinegap}{1pt}
 \setlength{\arrayrulewidth}{1pt}
@@ -73,29 +114,29 @@
 					\hline
 					                                                    & 年月日時                                 & 共同作業者                          & \multicolumn{3}{c|}{}                  \\
 					\cdashline{1-2} \cline{3-3}
-					1                                                   & \tuatcollaboratoronevalueone             & \tuatcollaboratoronevaluetwo        & \multicolumn{3}{c|}{}                  \\
+					1                                                   & \getdate1             & \getcollaborator1        & \multicolumn{3}{c|}{}                  \\
 					\cdashline{1-2} \cline{3-3}
-					2                                                   & \tuatcollaboratortwovalueone             & \tuatcollaboratortwovaluetwo        & \multicolumn{3}{c|}{}                  \\
+					2                                                   & \getdate2             & \getcollaborator2        & \multicolumn{3}{c|}{}                  \\
 					\cdashline{1-2} \cline{3-3}
-					3                                                   & \tuatcollaboratorthreevalueone           & \tuatcollaboratorthreevaluetwo      & \multicolumn{3}{c|}{}                  \\
+					3                                                   & \getdate3           & \getcollaborator3      & \multicolumn{3}{c|}{}                  \\
 					\cdashline{1-2} \cline{3-3}
-					4                                                   & \tuatcollaboratorfourvalueone            & \tuatcollaboratorfourvaluetwo       & \multicolumn{3}{c|}{}                  \\
+					4                                                   & \getdate4            & \getcollaborator4       & \multicolumn{3}{c|}{}                  \\
 					\cdashline{1-2} \cline{3-3}
-					                                                    & \tuatcollaboratorfivevalueone            & \tuatcollaboratorfivevaluetwo       & \multicolumn{3}{c|}{}                  \\
+					                                                    & \getdate5            & \getcollaborator5       & \multicolumn{3}{c|}{}                  \\
 					\cline{1-3}
 					\multicolumn{3}{|c|}{\textbf{レポート提出記録}}     & \multicolumn{3}{c|}{}                                                                                                   \\
 					\cline{1-3}
 					                                                    & 提出年月日                               & 期限年月日                          & \multicolumn{3}{c|}{}                  \\
 					\cline{1-3}
-					初                                                  & \tuatdateonevalueone                     & \tuatdateonevaluetwo                & \multicolumn{3}{c|}{}                  \\
+					初                                                  & \getsubmitdate1                     & \getduedate1                & \multicolumn{3}{c|}{}                  \\
 					\cdashline{1-3}
-					再                                                  & \tuatdatetwovalueone                     & \tuatdatetwovaluetwo                & \multicolumn{3}{c|}{}                  \\
+					再                                                  & \getsubmitdate2                     & \getduedate2                & \multicolumn{3}{c|}{}                  \\
 					\cdashline{1-3}
-					                                                    & \tuatdatethreevalueone                   & \tuatdatethreevaluetwo              & \multicolumn{3}{c|}{}                  \\
+					                                                    & \getsubmitdate3                   & \getduedate3              & \multicolumn{3}{c|}{}                  \\
 					\cdashline{1-3}
-					                                                    & \tuatdatefourvalueone                    & \tuatdatefourvaluetwo               & \multicolumn{3}{c|}{}                  \\
+					                                                    & \getsubmitdate4                    & \getduedate4               & \multicolumn{3}{c|}{}                  \\
 					\cdashline{1-3}
-					                                                    & \tuatdatefivevalueone                    & \tuatdatefivevaluetwo               & \multicolumn{3}{c|}{}                  \\
+					                                                    & \getsubmitdate5                    & \getduedate5               & \multicolumn{3}{c|}{}                  \\
 					\hline
 					\multicolumn{2}{|c|}{\textbf{科目名}}               & \textbf{テーマ指導教員}                  & \textbf{学年}                       & \textbf{学期}         & \textbf{単位}  \\
 					\hline
