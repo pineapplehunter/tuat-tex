@@ -29,6 +29,10 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+        # display tectonic version
+      - name: Tectonic version
+        run: tectonic -V
+
         # checks if it compiles
       - name: Run Tectonic
         run: tectonic sample-xelatex.tex
