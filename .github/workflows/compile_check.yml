@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -24,10 +24,7 @@ jobs:
           key: ${{ runner.os }}-tectonic-${{ hashFiles('**.tex','**.sty') }}
           restore-keys: |
             ${{ runner.os }}-tectonic-
-
-      - name: install deps
-        run: sudo apt update && sudo apt install -y libssl-dev
-
+            
         # this downloades tectonic
       - uses: wtfjoke/setup-tectonic@v3
         with:
