@@ -25,6 +25,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-tectonic-
 
+      - name: install deps
+        run: apt update && apt install -y libssl-dev
+
         # this downloades tectonic
       - uses: wtfjoke/setup-tectonic@v3
         with:
