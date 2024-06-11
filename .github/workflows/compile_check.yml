@@ -16,24 +16,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-        # caching files
-      - uses: actions/cache@v4
-        name: Tectonic Cache
-        with:
-          path: ~/.cache/Tectonic
-          key: ${{ runner.os }}-tectonic-${{ hashFiles('**.tex','**.sty') }}
-          restore-keys: |
-            ${{ runner.os }}-tectonic-
-            
-        # this downloades tectonic
-      - uses: wtfjoke/setup-tectonic@v3
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: cachix/install-nix-action@v27
+      # tectonic
+      - name: check textonic (xelatex)
+        run: nix shell "nixpkgs#tectonic" -L -c tectonic sample-xelatex.tex
 
-        # display tectonic version
-      - name: Tectonic version
-        run: tectonic -V
+      # platex
+      - name: check platex
+        run: |
+          nix shell "nixpkgs#texliveFull" -L -c platex sample-platex.tex
+          nix shell "nixpkgs#texliveFull" -L -c dvipdfmx sample-platex.dvi
 
-        # checks if it compiles
-      - name: Run Tectonic
-        run: tectonic sample-xelatex.tex
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pdf-artifact
+          path: sample*.pdf
+
