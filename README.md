@@ -71,4 +71,4 @@ https://students-tech.blog/post/tectonic.html#latex%E3%81%A8%E3%81%AF
 
 なにか質問や要望があればこのレポジトリに issue,PullRequiest を送るか、次のメールアドレスに連絡をお願いします。
 
-s196643z@st.go.tuat.ac.jp
+s231276x@st.go.tuat.ac.jp
