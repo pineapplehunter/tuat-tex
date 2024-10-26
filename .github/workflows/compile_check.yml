@@ -19,13 +19,13 @@ jobs:
       - uses: cachix/install-nix-action@v27
       # tectonic
       - name: check textonic (xelatex)
-        run: nix shell "nixpkgs#tectonic" -L -c tectonic sample-xelatex.tex
+        run: nix shell --quiet -L "nixpkgs#tectonic" -c tectonic sample-xelatex.tex
 
       # platex
       - name: check platex
         run: |
-          nix shell "nixpkgs#texliveFull" -L -c platex sample-platex.tex
-          nix shell "nixpkgs#texliveFull" -L -c dvipdfmx sample-platex.dvi
+          nix shell --quiet -L "nixpkgs#texliveFull" -c platex sample-platex.tex
+          nix shell --quiet -L "nixpkgs#texliveFull" -c dvipdfmx sample-platex.dvi
 
       - uses: actions/upload-artifact@v4
         with:
