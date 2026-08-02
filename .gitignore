@@ -2,3 +2,6 @@
 *.aux
 *.log
 *.bak*
+
+/result*
+/.direnv
