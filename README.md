@@ -2,6 +2,11 @@
 
 [![Compile Check](https://github.com/pineapplehunter/tuat-tex/workflows/Compile%20Check/badge.svg)](https://github.com/pineapplehunter/tuat-tex/actions)
 
+> [!NOTE]
+> **お知らせ**
+> このレポジトリは現在メンテナンスされていません。
+> 保守や改善をお手伝いいただける方は、issue またはメールでご連絡ください。
+
 ![スクリーンショット](Screenshot.png)
 
 ## サンプル
@@ -69,6 +74,6 @@ https://students-tech.blog/post/tectonic.html#latex%E3%81%A8%E3%81%AF
 
 ## 質問・要望
 
-なにか質問や要望があればこのレポジトリに issue,PullRequiest を送るか、次のメールアドレスに連絡をお願いします。
+ご質問やご要望があれば、このレポジトリに issue か Pull Request を送るか、次のメールアドレスにご連絡ください。
 
-s231276x@st.go.tuat.ac.jp
+shogo-takata@st.go.tuat.ac.jp
