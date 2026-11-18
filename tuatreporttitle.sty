@@ -46,21 +46,26 @@
     \int_compare:nNnF {#2} > { \seq_count:N #1 }
       { \seq_item:Nn #1 {#2} }
   }
+% 実験記録の1行：回数・実験日・共同作業者
 \cs_new:Npn \__tuat_experiment_cells:n #1
   {
-    #1 & \__tuat_item:Nn \g__tuat_dates_seq {#1} &
-    \__tuat_item:Nn \g__tuat_collaborators_seq {#1}
+    #1 & \__tuat_item:Nn \g__tuat_dates_seq {#1} & \__tuat_item:Nn \g__tuat_collaborators_seq {#1}
   }
-\cs_new:Npn \__tuat_submission_cells:n #1
+
+\cs_new:Npn \__tuat_submission_label:n #1
   {
     \int_compare:nNnTF {#1} = {1}
       {初}
       {
         \int_compare:nNnF {#1} > { \seq_count:N \g__tuat_submission_dates_seq }
           {再}
-      } &
-    \__tuat_item:Nn \g__tuat_submission_dates_seq {#1} &
-    \__tuat_item:Nn \g__tuat_due_dates_seq {#1}
+      }
+  }
+
+% 提出記録の1行：初／再・提出日・提出期限
+\cs_new:Npn \__tuat_submission_cells:n #1
+  {
+    \__tuat_submission_label:n {#1} & \__tuat_item:Nn \g__tuat_submission_dates_seq {#1} & \__tuat_item:Nn \g__tuat_due_dates_seq {#1}
   }
 
 \cs_new_protected:Npn \__tuat_build_rows:nNNn #1#2#3#4
@@ -99,34 +104,32 @@
         \resizebox*{\textwidth}{0.85\textheight}
           {
             \begin{tabular}{|c|c|c|c|c|c|}
+              % 実験演習記録（左3列）・判定と指示（右3列）
               \hline
-              \multicolumn{3}{|c|}{\textbf{実験演習記録}} &
-              \multicolumn{3}{c|}{\textbf{判定・指示}} \\
+              \multicolumn{3}{|c|}{\textbf{実験演習記録}}                                                                 & \multicolumn{3}{c|}{\textbf{判定・指示}}                                                             \\
               \hline
-              & 年月日時 & 共同作業者 & \multicolumn{3}{c|}{} \\
+                   & 年月日時                                           & 共同作業者                                      & \multicolumn{3}{c|}{}                                                                                \\
               \cline{1-3}
               \tl_use:N \l__tuat_experiment_rows_tl
-              \multicolumn{3}{|c|}{\textbf{レポート提出記録}} &
-              \multicolumn{3}{c|}{} \\
+
+              % レポート提出記録
+              \multicolumn{3}{|c|}{\textbf{レポート提出記録}}                                                             & \multicolumn{3}{c|}{}                                                                                \\
               \cline{1-3}
-              & 提出年月日 & 期限年月日 & \multicolumn{3}{c|}{} \\
+                   & 提出年月日                                         & 期限年月日                                      & \multicolumn{3}{c|}{}                                                                                \\
               \cline{1-3}
               \tl_use:N \l__tuat_submission_rows_tl
               \hline
-              \multicolumn{2}{|c|}{\textbf{科目名}} &
-              \textbf{テーマ指導教員} & \textbf{学年} &
-              \textbf{学期} & \textbf{単位} \\
+
+              % 科目・履修情報
+              \multicolumn{2}{|c|}{\textbf{科目名}}                     & \textbf{テーマ指導教員}                         & \textbf{学年}                  & \textbf{学期}                    & \textbf{単位}                    \\
               \hline
-              \multicolumn{2}{|c|}{\__tuat_value:n { course }} &
-              \__tuat_value:n { instructor } & \__tuat_value:n { year } &
-              \__tuat_value:n { semester } & \__tuat_value:n { credits } \\
+              \multicolumn{2}{|c|}{\__tuat_value:n { course }}          & \__tuat_value:n { instructor }                  & \__tuat_value:n { year }       & \__tuat_value:n { semester }     & \__tuat_value:n { credits }      \\
               \hline
-              \multicolumn{2}{|c|}{\textbf{テーマ番号・テーマ名}} &
-              \textbf{学籍番号} & \multicolumn{3}{c|}{\textbf{名前}} \\
+
+              % テーマ・学生情報
+              \multicolumn{2}{|c|}{\textbf{テーマ番号・テーマ名}}       & \textbf{学籍番号}                               & \multicolumn{3}{c|}{\textbf{名前}}                                                                   \\
               \hline
-              \multicolumn{2}{|c|}{\__tuat_value:n { theme }} &
-              \__tuat_value:n { student-id } &
-              \multicolumn{3}{c|}{\__tuat_value:n { name }} \\
+              \multicolumn{2}{|c|}{\__tuat_value:n { theme }}           & \__tuat_value:n { student-id }                  & \multicolumn{3}{c|}{\__tuat_value:n { name }}                                                        \\
               \hline
             \end{tabular}
           }
