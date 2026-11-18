@@ -1,61 +1,27 @@
-\documentclass[xelatex, 11pt, a4paper, ja=standard]{bxjsarticle}
-
-% レポートの表紙のパッケージ
+\documentclass[xelatex,11pt,a4paper,ja=standard]{bxjsarticle}
 \usepackage{tuatreporttitle}
 
-%%%%%%%%%%%%%%%%%%%%
-% ページの余白設定
-%%%%%%%%%%%%%%%%%%%%
-\geometry{reset, left=30mm, right=30mm, top=20mm, bottom=20mm}
-%%%%%%%%%%%%%%%%%%%%
+\geometry{left=30mm,right=30mm,top=20mm,bottom=20mm}
 
+% 表紙の基本設定
+\tuatsetup{
+  name       = {ダニエル},                   % 名前
+  student-id = {19266056},                   % 学籍番号
+  year       = {2},                          % 学年
+  semester   = {後期},                       % 学期
+  credits    = {2},                          % 単位数
+  course     = {知能情報システム工学実験 1B}, % 科目名
+  theme      = {テーマ},                     % テーマ番号・テーマ名
+  instructor = {先生},                       % テーマ指導教員
+  experiment-dates = {2020年10月1日, 2020年10月8日}, % 実験日（実施順）
+  collaborators    = {Aさん, Bさん, Cさん, Dさん, Eさん}, % 共同作業者
+  submission-dates = {2020年10月10日, 2020年10月17日}, % 提出日（提出順）
+  due-dates        = {2020年10月15日, 2020年10月22日}, % 提出期限
+}
 
-%%%%%%%%%%%%%%%%%%%%
-% 表紙設定
-%%%%%%%%%%%%%%%%%%%%
-% \title{実験報告書}	% タイトル(デフォルトで「実験報告書」)
-\tuatgakunen{2}			% 学年
-\tuatgakki{後期}		% 学期
-\tuattani{2} 			% 単位
-\tuatnumber{19266056} 	% 学籍番号
-\tuattheme{テーマ} 		% テーマ
-\tuatteacher{先生} 		% 指導教員
-\tuatkamoku{知能情報システム工学実験 1B} % 科目
-\tuatauthor{ダニエル} 	% 氏名
-
-% 共同作業者
-\collaborator1{Aさん}
-\collaborator2{Bさん}
-\collaborator3{Cさん}
-\collaborator4{Dさん}
-\collaborator5{Eさん}
-
-% 作業日
-\date1{2020年10月1日} % 一日目
-\date2{2020年10月8日} % 二日目
-% \date3{2020年10月8日} % 三日目
-% \date4{2020年10月8日} % 四日目
-% \date5{2020年10月8日} % 五日目
-
-
-% 提出期限
-\duedate1{2020年10月15日}
-\duedate2{2020年10月22日} % 再提出
-
-% 提出日
-\submitdate1{2020年10月10日}
-\submitdate2{2020年10月17日} % 再提出
-%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%
-% ここから実際のレポートの内容
-%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-% 表紙の作成
-\maketitle
-% ここから内容
-% \section{要約}
+\maketuatcover
+
 \section{目的}
 \section{原理}
 \section{実験方法および装置}

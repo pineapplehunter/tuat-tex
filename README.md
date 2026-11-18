@@ -9,67 +9,79 @@
 
 ![スクリーンショット](Screenshot.png)
 
-## サンプル
-### platex
-`sample-platex.tex`を参考にしてみてください。
-### xelatex(Tectonic等)
-`sample-xelatex.tex`を参考にしてください。
+## 旧バージョン（v1）
+
+従来の `\tuatgakunen`、`\date1`、`\maketitle` などを使う文書には、
+[v1 タグ](https://github.com/pineapplehunter/tuat-tex/tree/v1)のスタイルファイルと使い方を参照してください。
+現在のインターフェース（v2）は従来版と互換性がありません。
 
 ## 使い方
 
-`tuatreporttitle.sty`を自分の作業ディレクトリに移動して
+`tuatreporttitle.sty` を自分の作業ディレクトリに置き、次のように使います。
 
 ```latex
 \usepackage{tuatreporttitle}
+
+\tuatsetup{
+  name       = {ダニエル},                   % 名前
+  student-id = {19266056},                   % 学籍番号
+  year       = {2},                          % 学年
+  semester   = {後期},                       % 学期
+  credits    = {2},                          % 単位数
+  course     = {知能情報システム工学実験 1B}, % 科目名
+  theme      = {テーマ},                     % テーマ番号・テーマ名
+  instructor = {先生},                       % テーマ指導教員
+  experiment-dates = {2020年10月1日, 2020年10月8日}, % 実験日（実施順）
+  collaborators    = {Aさん, Bさん, Cさん, Dさん, Eさん}, % 共同作業者
+  submission-dates = {2020年10月10日, 2020年10月17日}, % 提出日（提出順）
+  due-dates        = {2020年10月15日, 2020年10月22日}, % 提出期限
+}
+
+\begin{document}
+\maketuatcover
+% ここからレポート本文
+\end{document}
 ```
 
-それから次のようなパラメータをプリアンプルで決めます
+- `\tuatsetup{...}` は繰り返し呼べます。指定した項目だけを更新します。
+- `title` の初期値は「実験報告書」、`year` は `1`、`semester` は「前期」、`credits` は `2` です。それ以外の未指定項目は空欄になります。
+- `experiment-dates`、`collaborators`、`submission-dates`、`due-dates` はカンマ区切りのリストです。再指定するとそのリスト全体を置き換えます。空にするには `collaborators = {}` のように指定します。
+- `submission-dates` と `due-dates` は提出順に指定します。最初の提出日に「初」、2回目以降の提出日に「再」を表示します。日付の形式は自由です。
+- 通常の値に半角カンマを含む場合は `theme = {テーマA, テーマB}` のように波括弧で囲んでください。リスト内の一項目にカンマを含む場合は `collaborators = {{Last, First}, Bさん}` のようにさらに囲みます。値の中で `\textbf{...}` などの LaTeX コマンドも使えます。
+- 実験日・共同作業者・提出記録にはそれぞれ最低5行の記入欄を用意します。6件以上も表示しますが、表全体を同じ大きさに合わせるため文字や行は小さくなります。
+- `geometry` は自動で読み込みます。表紙の後は元の余白に戻り、本文のページ番号は1から始まります。標準の `\title`、`\author`、`\date`、`\maketitle` は変更しません。表紙の情報は `\tuatsetup` で指定してください。
 
-| 表紙設定(例)                             | 内容                                         |
-| ---------------------------------------- | -------------------------------------------- |
-| \title{実験報告書}                       | レポートのタイトル(指定なしで「実験報告書」) |
-| \tuatgakunen{2}                          | 学年                                         |
-| \tuatgakki{後期}                         | 学期                                         |
-| \tuattani{2}                             | 単位                                         |
-| \tuatnumber{19266056}                    | 学籍番号                                     |
-| \tuattheme{テーマ}                       | テーマ                                       |
-| \tuatteacher{先生}                       | 指導教員                                     |
-| \tuatkamoku{知能情報システム工学実験 1B} | 科目                                         |
-| \tuatauthor{ダニエル}                    | 氏名                                         |
-| \date1{2020年10月10日}                   | 実験日 一日目                                |
-| \date2{2020年10月10日}                   | 実験日 二日目                                |
-| \date{3~5}{2020年10月10日}               | 実験日 予備                                  |
-| \collaborator{1~5}{Aさん}                | 共同作業者                                   |
-| \duedate1{2020年10月10日}                | 提出日期限                                   |
-| \duedate2{2020年10月10日}                | 提出日期限(再)                               |
-| \submitdate1{2020年10月10日}             | 提出日                                       |
-| \submitdate2{2020年10月10日}             | 提出日(再)                                   |
+## サンプル
 
+- `sample-xelatex.tex`：XeLaTeX / [Tectonic][] 用
+- `sample-platex.tex`：pLaTeX 用（`platex` の後に `dvipdfmx` で PDF に変換）
 
+### Tectonic
 
-設定ができたら document 内でこのように打ちます。
-
-```latex
-\maketitle
+```sh
+tectonic sample-xelatex.tex
 ```
 
-これでページに表紙が表示されるはずです。
+### pLaTeX
 
-`sample.tex`を参考にしてみてください。
+```sh
+platex -halt-on-error sample-platex.tex
+dvipdfmx sample-platex.dvi
+```
 
 ## テスト環境
 
-| 名称   | 設定                |
-| ------ | ------------------- |
-| LaTeX  | [Tectonic][](XeTeX) |
-| サイズ | A4                  |
+| 名称 | 設定 |
+| ---- | ---- |
+| LaTeX | [Tectonic][]（XeTeX）、pLaTeX + dvipdfmx |
+| サイズ | A4 |
 
 [tectonic]: https://tectonic-typesetting.github.io/en-US/
 
-その他での動作は保証しませんがある程度どんな環境でも動くと思います。動かない環境があれば連絡して貰えれば対応を考えてみます。
-
 ## 参考
-始めてLaTeXを書く人はTectonicというプログラムを使うことをおすすめします。私が記事を書いているので参考にしてみてください。
+
+初めて LaTeX を書く人は Tectonic というプログラムを使うことをおすすめします。
+私が記事を書いているので参考にしてみてください。
 https://students-tech.blog/post/tectonic.html#latex%E3%81%A8%E3%81%AF
 
 ## 質問・要望
