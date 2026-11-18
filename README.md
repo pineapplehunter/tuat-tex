@@ -86,6 +86,7 @@ https://students-tech.blog/post/tectonic.html#latex%E3%81%A8%E3%81%AF
 
 ## 質問・要望
 
-ご質問やご要望があれば、このレポジトリに issue か Pull Request を送るか、次のメールアドレスにご連絡ください。
+ご質問やご要望があれば、このレポジトリに issue か Pull Request を送るか、メールまたは X でご連絡ください。
 
-shogo-takata@st.go.tuat.ac.jp
+- メール：shogo-takata@st.go.tuat.ac.jp
+- X：[@imaybedaniel](https://x.com/imaybedaniel)
